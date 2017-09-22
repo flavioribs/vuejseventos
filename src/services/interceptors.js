@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import JwtToken from './jwt-token';
+import SessionStorage from './session-storage';
 
 Vue.http.interceptors.push((request, next) => {
-    request.headers.set('Authorization', JwtToken.getAuthorizationHeader());
+    request.headers.set('Authorization', SessionStorage.getAuthorizationHeader());
     
     next();
 });
