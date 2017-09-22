@@ -4,11 +4,13 @@
     <md-toolbar>
         <md-button class="md-icon-button" @click="toggleLeftSidenav">
           <md-icon>menu</md-icon>
-        </md-button>  
+        </md-button>    
 
         <h2 class="md-title">Eventos APP</h2>
     </md-toolbar>
- 
+    <div>
+        <h4>Bem vindo, {{this.conf.userLogged}}</h4>    
+    </div>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-large">
         <div class="md-toolbar-container">
@@ -43,14 +45,15 @@
 
 <script>
 
-import event from './helpers/event'
+import event from './helpers/event';
+import SessionStorage from './services/session-storage';
 
 export default {
   data(){
       return{
          conf:{
-            logado : false       
-            
+            logado : false,
+            userLogged : ''                
          }
       }
   },
@@ -67,8 +70,9 @@ export default {
     },
     userLogged(){
       event.$on('userlogged', () => {
-        console.log('chegou a resposta do evento!')
+        var user = SessionStorage.getObject('appeventosuserlogged');
         this.conf.logado = true;
+        this.conf.userLogged = user.name;
       });
 
       return false;
