@@ -31,6 +31,7 @@
 </template>
 <script type="text/javascript">    
   import {Jwt} from './../services/resources';
+  import mytoastHelper from './../helpers/toastHelper';
 
     export default {
         data(){
@@ -47,11 +48,10 @@
         },
         methods: {
             login(user){
-                 console.log('metodo de login', user.username);
                 Jwt.accessToken(user.username, user.password)
                     .then((response) => {
-                        console.log(response.data);
-                        //this.$router.push({name: 'time.list'});
+                         mytoastHelper.newToast('Usuário verificado!.', 'success', 'people');  
+                        console.log(response.data.access_token)                        
                     })
                     .catch((responseError) => {
                         this.error.error = true;
