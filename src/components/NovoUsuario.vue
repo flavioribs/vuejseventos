@@ -3,10 +3,22 @@
         <md-layout md-tag="form" md-align="center" novalidate >
             <md-layout md-tag="md-card" md-column md-flex="30" md-flex-medium="40" md-flex-small="60" md-flex-xsmall="90" class="md-primary">
             <md-card-header>
-                <div class="md-title">Acesso</div>
+                <div class="md-title">Novo Usuário</div>
             </md-card-header>
 
             <md-card-content>
+                <md-input-container>
+                <md-icon>person</md-icon>
+                <label>Nome</label>
+                <md-input email required v-model="user.nome" />
+                </md-input-container>
+
+                <md-input-container>
+                <md-icon>person</md-icon>
+                <label>Email</label>
+                <md-input email required v-model="user.email" />
+                </md-input-container>
+
                 <md-input-container>
                 <md-icon>person</md-icon>
                 <label>Usuário</label>
@@ -21,8 +33,7 @@
             </md-card-content>
 
             <md-card-actions>
-                 <md-button type="button"><router-link class="btn btn-primary" :to="{name: 'NovoUsuario'}">Não tenho um conta</router-link></md-button>
-                 <md-button v-on:click="login(user)"  type="submit">Acessar</md-button>
+                <md-button v-on:click="login(user)"  type="submit">Cadastrar</md-button>
             </md-card-actions>
             </md-layout>
 

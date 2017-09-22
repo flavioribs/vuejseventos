@@ -26,7 +26,7 @@
               </md-list-item>
 
               <md-list-item>
-                <md-icon>add_box</md-icon> <span>Novo Evento</span>
+                <md-icon>add_box</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'NovoEvento'}">Novo Evento</router-link></span>
                 <md-divider class="md-inset"></md-divider>
                 
               </md-list-item>
