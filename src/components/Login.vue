@@ -33,6 +33,7 @@
   import {Jwt} from './../services/resources';
   import mytoastHelper from './../helpers/toastHelper';
   import SessionStorage from './../services/session-storage';
+  import event from './../helpers/event';
 
     export default {
         data(){
@@ -55,6 +56,10 @@
                          mytoastHelper.newToast('Usuário verificado!.', 'success', 'people'); 
                          SessionStorage.set('appeventostoken', response.data.access_token);
                          SessionStorage.setObject('appeventosuserlogged', response.data);
+
+                         event.$emit('userlogged', () => {
+                            console.log('Usuário logado!');
+                         });
 
                          this.$router.push({name: 'Eventos'});  
                     })

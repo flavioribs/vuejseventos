@@ -17,7 +17,7 @@
       </md-toolbar>            
       <div class="phone-viewport">
             <md-list>
-              <md-list-item>
+              <md-list-item v-show="!conf.logado">
                 <md-icon>lock</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Login'}">Login</router-link></span>
               </md-list-item>
 
@@ -42,8 +42,19 @@
 </template>
 
 <script>
+
+import event from './helpers/event'
+
 export default {
-  name: 'app',
+  data(){
+      return{
+         conf:{
+            logado : false       
+            
+         }
+      }
+  },
+  name: 'app', 
   methods: {
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();
@@ -53,8 +64,19 @@ export default {
     },
     close(ref) {
       console.log('Closed: ' + ref);
-    }
-  }
+    },
+    userLogged(){
+      event.$on('userlogged', () => {
+        console.log('chegou a resposta do evento!')
+        this.conf.logado = true;
+      });
+
+      return false;
+    }  
+  },
+  mounted(){
+    this.userLogged();
+  }  
 }
 </script>
 
