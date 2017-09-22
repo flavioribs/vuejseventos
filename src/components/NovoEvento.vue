@@ -85,7 +85,7 @@
        directives: {mask},
        methods: {
             adicionar(evento){
-                 mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error');       
+                 mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error', 'warning');       
             }
         }
     }
