@@ -58,7 +58,8 @@
 </template>
 <script type="text/javascript">    
   import {Jwt} from './../services/resources';  
-  import {mask} from 'vue-the-mask'
+  import {mask} from 'vue-the-mask';
+  import mytoastHelper from './../helpers/toastHelper';
 
     export default {
         data(){
@@ -82,9 +83,9 @@
                        
        // },
        directives: {mask},
-        methods: {
+       methods: {
             adicionar(evento){
-                 console.log(evento);                 
+                 mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error');       
             }
         }
     }

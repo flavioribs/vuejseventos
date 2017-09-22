@@ -5,17 +5,14 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
 import Vue2Filters from 'vue2-filters'
-
+import Toasted from 'vue-toasted';
 
 import App from './App'
 import router from './router'
 
-//import VueTheMask from 'vue-the-mask'
-//Vue.use(VueTheMask)
-
-
 Vue.use(VueMaterial)
 Vue.use(Vue2Filters)
+Vue.use(Toasted)
 
 Vue.material.registerTheme({
   default: {
@@ -29,7 +26,6 @@ Vue.material.registerTheme({
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
