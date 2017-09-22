@@ -4,10 +4,14 @@ import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 
+import Vue2Filters from 'vue2-filters'
+
+
 import App from './App'
 import router from './router'
 
 Vue.use(VueMaterial)
+Vue.use(Vue2Filters)
 
 Vue.material.registerTheme({
   default: {

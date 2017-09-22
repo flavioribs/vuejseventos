@@ -11,10 +11,10 @@
         </md-input-container>
       </div>
    
-    <md-card v-for="even in evento">  
+    <md-card v-for="even in filterBy(evento, filter) ">  
         <md-card-header>
             <div class="md-title">{{even.nome}}</div>
-            <div class="md-subhead">Data: {{even.dataInicio}} à {{even.dataFim}} </div>
+            <div class="md-subhead">Data: {{ frontEndDateFormat(even.dataInicio) }} à {{frontEndDateFormat(even.dataFim)}} </div>
             <div class="md-subhead">Horário: {{even.horaInicio}} à {{even.horaFim}} </div>
         </md-card-header>     
 
@@ -28,6 +28,8 @@
 <script>
     import {Eventos} from './../services/resources';
     import _  from 'lodash';
+    import moment from 'moment'
+    
 
     export default {
         data(){
@@ -42,24 +44,16 @@
                           this.evento = response.data;
                           console.log(this.evento);
                      });
-            }
+            },
+            frontEndDateFormat: function(date) {
+        		return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        	},
+        	backEndDateFormat: function(date) {
+        		return moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        	}
         },       
         mounted(){
             this.eventos();
-        },
-         computed:{
-            filtros(){
-            
-                 //let colecao = _.orderBy(this.evento, this.nome);
-                return _.filter(this.evento, item=>{ return item.nome.indexOf(this.filter)>=0});
-            }           
-        },
-        filters: {
-            capitalize: function (value) {
-            if (!value) return ''
-            value = value.toString()
-            return value.charAt(0).toUpperCase() + value.slice(1)
+        }      
     }
-  }
-}
 </script>
