@@ -29,6 +29,7 @@
     import {Eventos} from './../services/resources';
     import _  from 'lodash';
     import moment from 'moment'    
+    import mytoastHelper from './../helpers/toastHelper';
 
     export default {
         data(){
@@ -41,7 +42,7 @@
             eventos(){
                  Eventos.query().then(response => {
                           this.evento = response.data;
-                          console.log(this.evento);
+                          mytoastHelper.newToast('Você está visualizando os últimos eventos cadastrados.', 'info', 'visibility');   
                      });
             },
             frontEndDateFormat: function(date) {
