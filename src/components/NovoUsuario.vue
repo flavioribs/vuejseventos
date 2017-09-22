@@ -10,30 +10,30 @@
                 <md-input-container>
                 <md-icon>person</md-icon>
                 <label>Nome</label>
-                <md-input email required v-model="user.nome" />
+                <md-input email required v-model="usuario.Nome" />
                 </md-input-container>
 
                 <md-input-container>
                 <md-icon>person</md-icon>
                 <label>Email</label>
-                <md-input email required v-model="user.email" />
+                <md-input email required v-model="usuario.Email" />
                 </md-input-container>
 
                 <md-input-container>
                 <md-icon>person</md-icon>
                 <label>Usuário</label>
-                <md-input email required v-model="user.username" />
+                <md-input email required v-model="usuario.UserName" />
                 </md-input-container>
 
                 <md-input-container md-has-password>
                 <md-icon>lock</md-icon>
                 <label>Senha</label>
-                <md-input type="password" required v-model="user.password" />
+                <md-input type="password" required v-model="usuario.Senha" />
                 </md-input-container>
             </md-card-content>
 
             <md-card-actions>
-                <md-button v-on:click="adicionar(user)"  type="submit">Cadastrar</md-button>
+                <md-button v-on:click="adicionar(usuario)"  type="submit">Cadastrar</md-button>
             </md-card-actions>
             </md-layout>
 
@@ -43,13 +43,16 @@
 <script type="text/javascript">    
   import {Jwt} from './../services/resources';
   import mytoastHelper from './../helpers/toastHelper';
+  import axios from 'axios';
 
     export default {
         data(){
             return {
-                user: {
-                    username: '',
-                    password:''
+                usuario: {
+                    UserName: '',
+                    Senha:'',
+                    Email: '',
+                    Nome: ''
                 },
                 error: {
                     error: false,
@@ -58,8 +61,20 @@
             }
         },
         methods: {
-            adicionar(user){
-                mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error', 'warning');     
+            adicionar(usuario){
+                var config = {
+                     headers: {'Content-Type': 'application/json'}
+                };
+                axios.post('http://eventosapi.azurewebsites.net/api/usuario/novo', 
+                      {Nome: this.usuario.Nome, UserName : this.usuario.UserName, Senha : this.usuario.Senha, Email : this.usuario.Email }, config
+                    ).then(response => {
+                           mytoastHelper.newToast('Cadastrado com sucesso.', 'success', 'warning');   
+                           this.$router.push({name: 'Login'});  
+                        
+                    }).catch(e => {
+                        mytoastHelper.newToast('Deu algo errado! =/', 'error', 'warning');    
+                       
+                    });
             }
         }
     }
