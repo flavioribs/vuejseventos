@@ -42,6 +42,7 @@
 </template>
 <script type="text/javascript">    
   import {Jwt} from './../services/resources';
+  import mytoastHelper from './../helpers/toastHelper';
 
     export default {
         data(){
@@ -58,8 +59,7 @@
         },
         methods: {
             adicionar(user){
-                 console.log(user);
-                
+                mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error', 'warning');     
             }
         }
     }
