@@ -1,6 +1,6 @@
 <template>
-<div class="container" >
-    <span class="md-display-1" style="padding-bottom:20px !important;">Próximos Eventos</span>
+<div class="container"  style="padding-bottom:20px;  padding-left:100px; padding-right:100px !important;" >
+    <span class="md-display-1" style="padding-bottom:20px; padding-left:30px; !important;">Próximos Eventos</span>
     </br>
       <div style="padding-left:80px;padding-right:200px;">
       <md-input-container>

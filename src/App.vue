@@ -1,54 +1,48 @@
 <template>
   <div id="app">
-  <md-menu>
-  <md-button md-menu-trigger>Bottom Right</md-button>
+     <div class="phone-viewport">
+    <md-toolbar>
+        <md-button class="md-icon-button" @click="toggleLeftSidenav">
+          <md-icon>menu</md-icon>
+        </md-button>  
 
-  <md-menu-content>
-    <md-menu-item>My Item 1</md-menu-item>
-    <md-menu-item>My Item 2</md-menu-item>
-    <md-menu-item>My Item 3</md-menu-item>
-  </md-menu-content>
-</md-menu>
+        <h2 class="md-title">Eventos APP</h2>
+    </md-toolbar>
+ 
+    <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+      <md-toolbar class="md-large">
+        <div class="md-toolbar-container">
+          <h3 class="md-title">Menu</h3>
+        </div>
+      </md-toolbar>
 
-<md-menu md-direction="bottom left">
-  <md-button md-menu-trigger>Bottom Left</md-button>
-
-  <md-menu-content>
-    <md-menu-item>My Item 1</md-menu-item>
-    <md-menu-item>My Item 2</md-menu-item>
-    <md-menu-item disabled>My Item 3</md-menu-item>
-    <md-menu-item>My Item 4</md-menu-item>
-  </md-menu-content>
-</md-menu>
-
-<md-menu md-direction="top left">
-  <md-button md-menu-trigger>Top Left</md-button>
-
-  <md-menu-content>
-    <md-menu-item>My Item 1</md-menu-item>
-    <md-menu-item>My Item 2</md-menu-item>
-    <md-menu-item>My Item 3</md-menu-item>
-  </md-menu-content>
-</md-menu>
-
-<md-menu md-direction="top right">
-  <md-button md-menu-trigger>Top Right</md-button>
-
-  <md-menu-content>
-    <md-menu-item>My Item 1</md-menu-item>
-    <md-menu-item>My Item 2</md-menu-item>
-    <md-menu-item>My Item 3</md-menu-item>
-  </md-menu-content>
-</md-menu>
-</br>
-</br>
+       <p>Login</p>
+       <p>Novo Evento</p>
+       <p>Cadastrar</p>
+    </md-sidenav>
+    </md-sidenav>
+  </div>
+  </br>
+  </br>
+  </br>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    toggleLeftSidenav() {
+      this.$refs.leftSidenav.toggle();
+    },
+    open(ref) {
+      console.log('Opened: ' + ref);
+    },
+    close(ref) {
+      console.log('Closed: ' + ref);
+    }
+  }
 }
 </script>
 
