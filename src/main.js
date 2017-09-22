@@ -10,6 +10,10 @@ import Vue2Filters from 'vue2-filters'
 import App from './App'
 import router from './router'
 
+//import VueTheMask from 'vue-the-mask'
+//Vue.use(VueTheMask)
+
+
 Vue.use(VueMaterial)
 Vue.use(Vue2Filters)
 

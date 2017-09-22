@@ -33,7 +33,7 @@
             </md-card-content>
 
             <md-card-actions>
-                <md-button v-on:click="login(user)"  type="submit">Cadastrar</md-button>
+                <md-button v-on:click="adicionar(user)"  type="submit">Cadastrar</md-button>
             </md-card-actions>
             </md-layout>
 
@@ -57,21 +57,9 @@
             }
         },
         methods: {
-            login(user){
-                 console.log('metodo de login', user.username);
-                Jwt.accessToken(user.username, user.password)
-                    .then((response) => {
-                        console.log(response.data);
-                        //this.$router.push({name: 'time.list'});
-                    })
-                    .catch((responseError) => {
-                        this.error.error = true;
-                        if (responseError.status === 400) {
-                            this.error.message = responseError.data.error;
-                        } else {
-                            this.error.message = 'Login falhou!!'
-                        }
-                    })
+            adicionar(user){
+                 console.log(user);
+                
             }
         }
     }
