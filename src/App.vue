@@ -14,12 +14,24 @@
         <div class="md-toolbar-container">
           <h3 class="md-title">Menu</h3>
         </div>
-      </md-toolbar>
+      </md-toolbar>            
+      <div class="phone-viewport">
+            <md-list>
+              <md-list-item>
+                <md-icon>lock</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Login'}">Login</router-link></span>
+              </md-list-item>
 
-       <p>Login</p>
-       <p>Novo Evento</p>
-       <p>Cadastrar</p>
-    </md-sidenav>
+               <md-list-item>
+                <md-icon>supervisor_account</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Eventos'}">Eventos</router-link></span>
+              </md-list-item>
+
+              <md-list-item>
+                <md-icon>add_box</md-icon> <span>Novo Evento</span>
+                <md-divider class="md-inset"></md-divider>
+                
+              </md-list-item>
+            </md-list>
+      </div>
     </md-sidenav>
   </div>
   </br>
