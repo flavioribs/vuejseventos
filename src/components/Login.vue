@@ -51,6 +51,7 @@
                 Jwt.accessToken(user.username, user.password)
                     .then((response) => {
                          mytoastHelper.newToast('Usuário verificado!.', 'success', 'people');  
+                         this.$router.push({name: 'Eventos'});  
                         console.log(response.data.access_token)                        
                     })
                     .catch((responseError) => {
