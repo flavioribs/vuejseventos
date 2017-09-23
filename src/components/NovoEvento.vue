@@ -83,22 +83,23 @@
        methods: {
             adicionar(evento){
                 console.log(evento);
-                 Evento.novoEvento(evento)
-                    .then((response) => {
+
+                  Evento.novoEvento(evento)
+                     .then((response) => {
                         
-                         mytoastHelper.newToast('Evento Cadastrado!.', 'success', 'tag_faces'); 
+                          mytoastHelper.newToast('Evento Cadastrado!.', 'success', 'tag_faces'); 
 
-                         this.$router.push({name: 'Eventos'});  
+                          this.$router.push({name: 'Eventos'});  
 
-                    }).catch((responseError) => {
-                        this.error.error = true;
-                        if (responseError.status === 400) {
-                            this.error.message = responseError.data.error;
-                        } else {
-                            this.error.message = 'Deu alguma coisa errada!'
-                        }
-                    })
-                }
+                     }).catch((responseError) => {
+                         this.error.error = true;
+                         if (responseError.status === 400) {
+                             this.error.message = responseError.data.error;
+                         } else {
+                             this.error.message = 'Deu alguma coisa errada!'
+                         }
+                     })
+                 }
         }
     }
 </script>

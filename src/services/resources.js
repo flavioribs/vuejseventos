@@ -17,24 +17,24 @@ export class Jwt{
         params.append('username', username);
         params.append('password', password);
 
-        return axios.post('http://eventosapi.azurewebsites.net/token',params,  config);          
+        return axios.post(GlobalKeys.getUrlBase()+'/token',params,  config);          
     }    
 }
 
 export class Evento{
     static novoEvento(evento){
-       var config = {
-            headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' 
-            + SessionStorage.getToken(GlobalKeys.getKeyToken())}
-       };
-    return axios.post('http://eventosapi.azurewebsites.net/api/evento/novo', 
-            { UsuarioId: 2, Nome: evento.nome, DataInicio: evento.dataInicio,
+    
+    var config = GlobalKeys.headersPost();
+    var userLogged = SessionStorage.getObject(GlobalKeys.getKeyUser());
+    
+    return axios.post(GlobalKeys.getUrlBase()+'/api/evento/novo', 
+            { UsuarioId: userLogged.id, Nome: evento.nome, DataInicio: evento.dataInicio,
             DataFim: evento.dataFim, HoraInicio: evento.horaInicio, HoraFim: evento.horaFim,
             Descricao: evento.descricao, Cancelado: evento.cancelado  }, config
             );    
     }    
 }
 
-const Eventos = Vue.resource('http://eventosapi.azurewebsites.net/api/evento/obtertodos');
+const Eventos = Vue.resource(GlobalKeys.getUrlBase()+'/api/evento/obtertodos');
 
 export {Eventos};

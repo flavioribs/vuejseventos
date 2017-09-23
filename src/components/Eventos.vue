@@ -14,7 +14,8 @@
     <md-card v-for="even in filterBy(evento, filter) ">  
         <md-card-header>
             <div class="md-title">{{even.nome}}</div>
-            <div class="md-subhead">Data: {{ frontEndDateFormat(even.dataInicio) }} à {{frontEndDateFormat(even.dataFim)}} </div>
+            <!--<div class="md-subhead">Data: {{ frontEndDateFormat(even.dataInicio) }} à {{frontEndDateFormat(even.dataFim)}} </div>-->
+            <div class="md-subhead">Data: {{ even.dataInicio }} à {{even.dataFim}} </div>
             <div class="md-subhead">Horário: {{even.horaInicio}} à {{even.horaFim}} </div>
         </md-card-header>     
 

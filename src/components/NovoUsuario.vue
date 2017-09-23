@@ -43,6 +43,7 @@
 <script type="text/javascript">    
   import {Jwt} from './../services/resources';
   import mytoastHelper from './../helpers/toastHelper';
+  import GlobalKeys from './../helpers/constVariables';  
   import axios from 'axios';
 
     export default {
@@ -65,14 +66,14 @@
                 var config = {
                      headers: {'Content-Type': 'application/json'}
                 };
-                axios.post('http://eventosapi.azurewebsites.net/api/usuario/novo', 
+                axios.post(GlobalKeys.getUrlBase()+'/api/usuario/novo', 
                       {Nome: this.usuario.Nome, UserName : this.usuario.UserName, Senha : this.usuario.Senha, Email : this.usuario.Email }, config
                     ).then(response => {
                            mytoastHelper.newToast('Cadastrado com sucesso.', 'success', 'warning');   
-                           this.$router.push({name: 'Login'});  
+                           this.$router.push({name: 'Login'});
                         
                     }).catch(e => {
-                        mytoastHelper.newToast('Deu algo errado! =/', 'error', 'warning');    
+                        mytoastHelper.newToast('Deu algo errado! =/', 'error', 'warning');   
                        
                     });
             }
