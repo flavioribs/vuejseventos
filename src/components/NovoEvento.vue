@@ -13,7 +13,7 @@
                 <md-input-container>
                 <md-icon>person</md-icon>
                 <label>Nome</label>
-                <md-input email required v-model="evento.nome" />
+                <md-input required v-model="evento.nome" />
                 </md-input-container>
 
                 <md-input-container>
@@ -57,7 +57,7 @@
     </div>
 </template>
 <script type="text/javascript">    
-  import {Jwt} from './../services/resources';  
+  import {Evento} from './../services/resources';  
   import {mask} from 'vue-the-mask';
   import mytoastHelper from './../helpers/toastHelper';
 
@@ -82,8 +82,23 @@
        directives: {mask},
        methods: {
             adicionar(evento){
-                 mytoastHelper.newToast('Isso Ainda não Funciona! Aguarde o próximo commit.', 'error', 'warning');       
-            }
+                console.log(evento);
+                 Evento.novoEvento(evento)
+                    .then((response) => {
+                        
+                         mytoastHelper.newToast('Evento Cadastrado!.', 'success', 'tag_faces'); 
+
+                         this.$router.push({name: 'Eventos'});  
+
+                    }).catch((responseError) => {
+                        this.error.error = true;
+                        if (responseError.status === 400) {
+                            this.error.message = responseError.data.error;
+                        } else {
+                            this.error.message = 'Deu alguma coisa errada!'
+                        }
+                    })
+                }
         }
     }
 </script>

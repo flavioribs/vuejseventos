@@ -16,7 +16,11 @@ export default {
     remove(key){
         window.sessionStorage.removeItem(key);
     },
-    getAuthorizationHeader(){
-        return `Bearer ${this.token}`;
+    getToken(key){
+        return window.sessionStorage[key];
+    },
+    getAuthorizationHeader()
+    {
+        return '';
     }
 };

@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 import axios from 'axios';
+import GlobalKeys from './../helpers/constVariables';
+import SessionStorage from './session-storage';
 
 Vue.use(VueResource);
 require('./interceptors');
@@ -22,12 +24,14 @@ export class Jwt{
 export class Evento{
     static novoEvento(evento){
        var config = {
-            headers: {'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' 
+            + SessionStorage.getToken(GlobalKeys.getKeyToken())}
        };
-       axios.post('http://eventosapi.azurewebsites.net/api/evento/novo', 
-        { Nome: this.usuario.Nome, UserName : this.usuario.UserName,
-          Senha : this.usuario.Senha, Email : this.usuario.Email }, config
-        );    
+    return axios.post('http://eventosapi.azurewebsites.net/api/evento/novo', 
+            { UsuarioId: 2, Nome: evento.nome, DataInicio: evento.dataInicio,
+            DataFim: evento.dataFim, HoraInicio: evento.horaInicio, HoraFim: evento.horaFim,
+            Descricao: evento.descricao, Cancelado: evento.cancelado  }, config
+            );    
     }    
 }
 
