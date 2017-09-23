@@ -20,10 +20,10 @@
       <div class="phone-viewport">
             <md-list>
               <md-list-item v-show="!conf.logado">
-                <md-icon>lock</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Login'}">Login</router-link></span>
+                <md-icon>lock</md-icon> <span  @close="close('Left')"><router-link class="btn btn-primary" :to="{name: 'Login'}">Login</router-link></span>
               </md-list-item>
 
-               <md-list-item>
+               <md-list-item @close="close('Left')">
                 <md-icon>supervisor_account</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Eventos'}">Eventos</router-link></span>
               </md-list-item>
 
@@ -58,7 +58,7 @@ export default {
       return{
          conf:{
             logado : false,
-            userLogged : 'Anônimo'                
+            userLogged : 'Visitante'                
          }
       }
   },
@@ -83,13 +83,10 @@ export default {
       return false;
     },
     exitApp(){
-      console.log('onexitapp');
       SessionStorage.remove(GlobalKeys.getKeyToken());
       SessionStorage.remove(GlobalKeys.getKeyUser());
-
       this.conf.logado = false;
-      mytoastHelper.newToast('Até a próxima!.', 'success', 'people'); 
-
+      mytoastHelper.newToast('Até a próxima!.', 'success', 'tag_faces'); 
       this.$router.push({name: 'Login'});  
     }
   },
