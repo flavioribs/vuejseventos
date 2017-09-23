@@ -12,22 +12,26 @@ export default new Router({
     {
       path: '/',
       name: 'Eventos',
-      component: Eventos
+      component: Eventos,
+      meta: { auth: false }
     },    
     {
       path: '/Login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: { auth: false }
     },
     {
       path: '/NovoUsuario',
       name: 'NovoUsuario',
-      component: NovoUsuario
+      component: NovoUsuario,
+      meta: { auth: false }
     },
     {
       path: '/NovoEvento',
       name: 'NovoEvento',
-      component: NovoEvento
+      component: NovoEvento,
+      meta: { auth: true }
     }
   ]
 })

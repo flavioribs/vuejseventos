@@ -73,14 +73,16 @@ export default {
     close(ref) {
       console.log('Closed: ' + ref);
     },
-    userLogged(){
-      event.$on('userlogged', () => {
-        var user = SessionStorage.getObject('appeventosuserlogged');
-        this.conf.logado = true;
-        this.conf.userLogged = user.name;
-      });
-
-      return false;
+    userLogged(){       
+        let xuser = SessionStorage.userLogged();
+        if(xuser){
+          console.log(xuser);
+           const user = SessionStorage.getObject('appeventosuserlogged');
+           this.conf.logado = true;
+           this.conf.userLogged = user.name;
+        }else{
+          this.conf.logado = false;
+        }
     },
     exitApp(){
       SessionStorage.remove(GlobalKeys.getKeyToken());
@@ -90,9 +92,13 @@ export default {
       this.$router.push({name: 'Login'});  
     }
   },
-  mounted(){
+  updated()
+  {
     this.userLogged();
-  }  
+  },
+  created(){
+    this.userLogged();
+  }
 }
 </script>
 

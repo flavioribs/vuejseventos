@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+import SessionStorage from './services/session-storage'
 
 import Vue2Filters from 'vue2-filters'
 import Toasted from 'vue-toasted';
@@ -11,6 +12,14 @@ import router from './router'
 Vue.use(VueMaterial)
 Vue.use(Vue2Filters)
 Vue.use(Toasted)
+
+router.beforeEach((to, from, next) => {
+  if(!SessionStorage.userLogged() && to.meta.auth){
+      return router.push({name: 'Login'});
+  }
+  next();
+});
+
 
 Vue.material.registerTheme({
   default: {

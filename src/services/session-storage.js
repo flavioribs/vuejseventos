@@ -22,5 +22,13 @@ export default {
     getAuthorizationHeader()
     {
         return '';
-    }
+    },
+    userLogged(){ 
+        let user = window.sessionStorage['appeventostoken'];
+        if(user == null){
+            return false;
+        }else{
+            return true;
+        }
+     }        
 };

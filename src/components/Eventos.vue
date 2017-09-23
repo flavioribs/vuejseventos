@@ -17,7 +17,12 @@
             <!--<div class="md-subhead">Data: {{ frontEndDateFormat(even.dataInicio) }} à {{frontEndDateFormat(even.dataFim)}} </div>-->
             <div class="md-subhead">Data: {{ even.dataInicio }} à {{even.dataFim}} </div>
             <div class="md-subhead">Horário: {{even.horaInicio}} à {{even.horaFim}} </div>
-        </md-card-header>     
+        </md-card-header>    
+
+         <md-card-actions v-show="conf.logado">
+            <md-button>Excluir</md-button>
+        </md-card-actions>
+ 
 
         <md-card-content>
            Descricão: {{even.descricao}}
@@ -31,12 +36,18 @@
     import _  from 'lodash';
     import moment from 'moment'    
     import mytoastHelper from './../helpers/toastHelper';
+    import event from './../helpers/event';
+    import SessionStorage from './../services/session-storage';
+    import GlobalKeys from './../helpers/constVariables';
 
     export default {
         data(){
             return {
                 evento : [],
-                filter: ''
+                filter: '',
+                conf: {
+                    logado: false
+                }
             }
         },
         methods:{
@@ -51,10 +62,21 @@
         	},
         	backEndDateFormat: function(date) {
         		return moment(date, 'DD/MM/YYYY').format('YYYY-MM-DD');
-        	}
+        	 },
+             logged(){
+                let user = SessionStorage.userLogged();
+                if(!user){
+                    this.conf.logado = false;
+                }else{
+                    this.conf.logado = true;
+                }
+             }              
         },       
         mounted(){
-            this.eventos();
-        }      
+            this.eventos();           
+        },
+        created(){
+             this.logged();
+        }   
     }
 </script>

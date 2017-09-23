@@ -5,6 +5,6 @@ Vue.use(Toasted)
 
 export default {
     newToast(msg, msgType, msgIcon){
-        Vue.toasted.show(msg, {  type : msgType,  icon : msgIcon, duration: 2000});            
+        Vue.toasted.show(msg, {  type : msgType,  icon : msgIcon, duration: 5000});            
     }
 }
