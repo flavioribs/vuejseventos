@@ -9,7 +9,7 @@
         <h2 class="md-title">Eventos APP</h2>
     </md-toolbar>
     <div>
-        <h4>Bem vindo, {{this.conf.userLogged}}</h4>    
+        <h4>Bem vindo {{this.conf.userLogged}}</h4>    
     </div>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-large">
@@ -27,10 +27,13 @@
                 <md-icon>supervisor_account</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'Eventos'}">Eventos</router-link></span>
               </md-list-item>
 
-              <md-list-item>
+              <md-list-item v-show="conf.logado">
                 <md-icon>add_box</md-icon> <span><router-link class="btn btn-primary" :to="{name: 'NovoEvento'}">Novo Evento</router-link></span>
+              </md-list-item>
+
+              <md-list-item v-show="conf.logado">
+                <md-icon>exit_to_app</md-icon> <span v-on:click="exitApp()">Sair</span>
                 <md-divider class="md-inset"></md-divider>
-                
               </md-list-item>
             </md-list>
       </div>
@@ -47,13 +50,15 @@
 
 import event from './helpers/event';
 import SessionStorage from './services/session-storage';
+import mytoastHelper from './helpers/toastHelper';
+import GlobalKeys from './helpers/constVariables'
 
 export default {
   data(){
       return{
          conf:{
             logado : false,
-            userLogged : ''                
+            userLogged : 'Anônimo'                
          }
       }
   },
@@ -76,7 +81,17 @@ export default {
       });
 
       return false;
-    }  
+    },
+    exitApp(){
+      console.log('onexitapp');
+      SessionStorage.remove(GlobalKeys.getKeyToken());
+      SessionStorage.remove(GlobalKeys.getKeyUser());
+
+      this.conf.logado = false;
+      mytoastHelper.newToast('Até a próxima!.', 'success', 'people'); 
+
+      this.$router.push({name: 'Login'});  
+    }
   },
   mounted(){
     this.userLogged();

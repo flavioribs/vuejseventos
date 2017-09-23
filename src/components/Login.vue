@@ -34,6 +34,7 @@
   import mytoastHelper from './../helpers/toastHelper';
   import SessionStorage from './../services/session-storage';
   import event from './../helpers/event';
+  import GlobalKeys from './../helpers/constVariables'
 
     export default {
         data(){
@@ -54,8 +55,8 @@
                     .then((response) => {
                         
                          mytoastHelper.newToast('Usuário verificado!.', 'success', 'people'); 
-                         SessionStorage.set('appeventostoken', response.data.access_token);
-                         SessionStorage.setObject('appeventosuserlogged', response.data);
+                         SessionStorage.set(GlobalKeys.getKeyToken(), response.data.access_token);
+                         SessionStorage.setObject(GlobalKeys.getKeyUser(), response.data);
 
                          event.$emit('userlogged', () => {
                             console.log('Usuário logado!');

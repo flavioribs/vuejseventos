@@ -79,9 +79,6 @@
                 }
             }
         },
-       // components: {
-                       
-       // },
        directives: {mask},
        methods: {
             adicionar(evento){
