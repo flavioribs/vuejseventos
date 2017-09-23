@@ -20,7 +20,6 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-
 Vue.material.registerTheme({
   default: {
     primary: {

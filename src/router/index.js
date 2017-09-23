@@ -32,6 +32,12 @@ export default new Router({
       name: 'NovoEvento',
       component: NovoEvento,
       meta: { auth: true }
+    },
+    {
+      path: '*',
+      name: 'Login',
+      component: Login,
+      meta: { auth: false }
     }
   ]
 })
