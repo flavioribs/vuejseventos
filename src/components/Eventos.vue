@@ -79,6 +79,9 @@
             },
              deleteShowButton(evento){
                 let user = SessionStorage.getObject(GlobalKeys.getKeyUser());
+                if(user == null){
+                    return false;
+                }
 
                 if(evento.usuarioId == user.id){
                    return true;

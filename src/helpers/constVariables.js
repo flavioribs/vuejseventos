@@ -9,8 +9,8 @@ export default {
         return 'appeventosuserlogged';
     },
     getUrlBase(){
-        //return 'http://eventosapi.azurewebsites.net';
-        return 'http://localhost:57286';
+        return 'http://eventosapi.azurewebsites.net';
+        //return 'http://localhost:57286';
     },
     headersPost(){
         var config = {
