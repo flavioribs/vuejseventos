@@ -2,18 +2,14 @@
 yum install curl 
 
 # Instalando Node
-apt-get -y update
-wget https://nodejs.org/download/release/v7.8.0/node-v7.8.0.tar.gz
-tar xzvf node-v* && cd node-v*
-sudo yum install gcc gcc-c++
-./configure
-make
-sudo make install
+curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+sudo yum -y install nodejs
+sudo yum install gcc-c++ make
 
 #Vue - cli
 npm install -g vue-cli
 
-#Asp.net core
+#Asp.net core ok
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[packages-microsoft-com-prod]\nname=packages-microsoft-com-prod \nbaseurl=https://packages.microsoft.com/yumrepos/microsoft-rhel7.3-prod\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/dotnetdev.repo'
 sudo yum update
@@ -35,6 +31,7 @@ sudo yum install git
 #Clone aplicacao de eventos
 sudo mkdir /var/www
 cd /var/www
+sudo chmod 777 /var/www
 
 
 #Clone api
@@ -49,20 +46,4 @@ sudo firewall-cmd --permanent --zone=public --add-service=https
 sudo firewall-cmd --reload
 
 #Permissão
-sudo CHMOD -R 777 /var/www
-
-function confirm()
-{
-    echo -n "$@ "
-    read -e answer
-    for response in y Y yes YES Yes Sure sure SURE OK ok Ok
-    do
-        if [ "_$answer" == "_$response" ]
-        then
-            return 0
-        fi
-    done
-
-    # Any answer other than the list above is considerred a "no" answer
-    return 1
-}
+sudo chmod -R 777 /var/www
