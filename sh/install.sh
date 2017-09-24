@@ -28,13 +28,21 @@ systemctl status mssql-server
 #GIT
 sudo yum install git
 
-#Clone aplicacao de eventos
+#Pastas Padrao
 sudo mkdir /var/www
 cd /var/www
 sudo chmod 777 /var/www
 
+#Clone aplicacao de eventos
+git clone https://github.com/josuecorrea/vuejseventos.git /var/www/eventosfront
+cd /var/www/eventosfront
+npm install
 
 #Clone api
+git clone https://github.com/josuecorrea/webapieventos.git /var/www/eventosapi
+cd /var/www/eventosapi
+dotnet restore
+dotnet build
 
 #NGINX
 sudo yum install epel-release
