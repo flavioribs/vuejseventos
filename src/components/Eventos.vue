@@ -67,15 +67,12 @@
         	},
             logged(){
                 let user = SessionStorage.userLogged();
-                //var userLogged = SessionStorage.getObject(GlobalKeys.getKeyUser());
 
                 if(!user){
                     this.conf.logado = false;
                 }else{
                     this.conf.logado = true;
                 }
-
-
             },
              deleteShowButton(evento){
                 let user = SessionStorage.getObject(GlobalKeys.getKeyUser());
