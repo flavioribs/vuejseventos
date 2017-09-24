@@ -24,16 +24,23 @@ export class Jwt{
 export class Evento{
     static novoEvento(evento){
     
-    var config = GlobalKeys.headersPost();
-    var userLogged = SessionStorage.getObject(GlobalKeys.getKeyUser());
+        var config = GlobalKeys.headersPost();
+        var userLogged = SessionStorage.getObject(GlobalKeys.getKeyUser());
+        
+        return axios.post(GlobalKeys.getUrlBase()+'/api/evento/novo', 
+                { UsuarioId: userLogged.id, Nome: evento.nome, DataInicio: evento.dataInicio,
+                    DataFim: evento.dataFim, HoraInicio: evento.horaInicio, HoraFim: evento.horaFim,
+                    Descricao: evento.descricao, Cancelado: evento.cancelado  }, config
+                );    
+        };
     
-    return axios.post(GlobalKeys.getUrlBase()+'/api/evento/novo', 
-            { UsuarioId: userLogged.id, Nome: evento.nome, DataInicio: evento.dataInicio,
-            DataFim: evento.dataFim, HoraInicio: evento.horaInicio, HoraFim: evento.horaFim,
-            Descricao: evento.descricao, Cancelado: evento.cancelado  }, config
-            );    
-    }    
-}
+    static excluirEvento(evento){      
+                console.log('evento'+evento.id);      
+                var config = GlobalKeys.headersPost();
+                return axios.get(GlobalKeys.getUrlBase()+'/api/evento/delete?id='+evento.id, config);                   
+            }  
+        }
+
 
 const Eventos = Vue.resource(GlobalKeys.getUrlBase()+'/api/evento/obtertodos');
 
