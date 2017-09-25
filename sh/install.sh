@@ -16,24 +16,6 @@ sudo yum update
 sudo yum install libunwind libicu
 sudo yum install dotnet-sdk-2.0.0
 
-#Sql Server
-sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/7/mssql-server.repo
-sudo yum update
-sudo yum install -y mssql-server
-sudo /opt/mssql/bin/mssql-conf setup
-systemctl status mssql-server
-sudo firewall-cmd --zone=public --add-port=1433/tcp --permanent
-sudo firewall-cmd --reload
-
-sudo curl -o /etc/yum.repos.d/msprod.repo https://packages.microsoft.com/config/rhel/7/prod.repo
-sudo yum update
-sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
-sudo yum update
-sudo yum install -y mssql-tools unixODBC-devel
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc 
-
 #GIT ok
 sudo yum install git
 
@@ -67,3 +49,10 @@ sudo firewall-cmd --reload
 
 #Permissão
 sudo chmod -R 777 /var/www
+sudo service nginx restart
+
+#Publish
+sudo mkdir /var/www/production/api
+sudo mkdir /var/www/production/front
+
+dotnet publish /var/www/eventosapi/ApiEventosCore --output "/var/www/production/api"
